@@ -28,15 +28,13 @@ document.addEventListener('DOMContentLoaded', function() {
       resultsDiv.textContent = 'No search query provided.';
     }
   }
-
-  // Function to fetch data from CSV file
+  
   async function fetchData() {
     const response = await fetch('food_data.csv');
     const data = await response.text();
     return data;
   }
 
-  // Function to filter data based on search query
   function filterData(data, query) {
     const rows = data.split('\n');
     const filteredRows = rows.filter(row => {
@@ -46,9 +44,8 @@ document.addEventListener('DOMContentLoaded', function() {
     return filteredRows;
   }
 
-  // Function to display search results
   function displayResults(results) {
-    resultsDiv.innerHTML = ''; // Clear previous results
+    resultsDiv.innerHTML = '';
 
     if (results.length === 0) {
       const noResultsItem = document.createElement('div');
@@ -65,12 +62,11 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!uniqueItems[itemName]) {
           uniqueItems[itemName] = itemDetails;
         } else {
-          // Merge details for the same item
           uniqueItems[itemName].details.push(...itemDetails.details);
         }
       });
 
-      // Display unique items
+
       Object.values(uniqueItems).forEach(itemDetails => {
         const itemElement = createItemElement(itemDetails);
         resultsDiv.appendChild(itemElement);
@@ -78,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  // Function to parse item details from CSV row
+ 
   function parseItemDetails(rowData) {
     const itemDetails = {
       name: rowData[0],
@@ -86,14 +82,13 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     for (let i = 1; i < rowData.length; i++) {
-      // Split by colon
+   
       const parts = rowData[i].split(':');
       if (parts.length === 2) {
-        // Format: bold for key, normal for value
         let detail = `<b>${parts[0].trim()}</b>: ${parts[1].trim()}`;
         itemDetails.details.push(detail);
       } else {
-        // Handle unexpected format
+
         itemDetails.details.push(rowData[i].trim());
       }
     }
@@ -101,27 +96,26 @@ document.addEventListener('DOMContentLoaded', function() {
     return itemDetails;
   }
 
-  // Function to create HTML element for each item
+ 
   function createItemElement(itemDetails) {
     const itemContainer = document.createElement('div');
     itemContainer.classList.add('item-container');
 
-    // Create a link to Google search for the product name
     const googleLink = document.createElement('a');
     googleLink.href = `https://www.google.com/search?q=${encodeURIComponent(itemDetails.name)}`;
-    googleLink.target = '_blank'; // Open link in new tab
+    googleLink.target = '_blank'; 
     googleLink.textContent = itemDetails.name;
-    googleLink.style.fontWeight = 'bold'; // Optional: Make link text bold
-    googleLink.style.textDecoration = 'none'; // Optional: Remove underline
-    googleLink.style.display = 'block'; // Display as block for better clickability
-    googleLink.style.marginBottom = '10px'; // Optional: Add spacing between links
+    googleLink.style.fontWeight = 'bold';
+    googleLink.style.textDecoration = 'none'; 
+    googleLink.style.display = 'block';
+    googleLink.style.marginBottom = '10px'; 
 
     itemContainer.appendChild(googleLink);
 
     const detailsContainer = document.createElement('div');
     itemDetails.details.forEach(detail => {
       const detailPara = document.createElement('p');
-      detailPara.innerHTML = detail; // Use innerHTML to render bold tags
+      detailPara.innerHTML = detail; 
       detailsContainer.appendChild(detailPara);
     });
     itemContainer.appendChild(detailsContainer);
