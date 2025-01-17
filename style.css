@@ -1,4 +1,4 @@
-/* Global reset and base styles */
+
 * {
   margin: 0;
   padding: 0;
@@ -241,47 +241,4 @@ footer a:hover {
   }
 }
 
-/* Item container styles */
-.item-container {
-  background-color: #fff; /* White background */
-  border: 1px solid #ddd; /* Light gray border */
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
-  margin-bottom: 20px; /* Bottom margin between items */
-  padding: 20px; /* Padding inside item container */
-  text-align: center; /* Center align content */
-}
 
-.item-container h2 {
-  margin-bottom: 10px; /* Bottom margin for product name */
-}
-
-.item-container a {
-  color: #3498db; /* Link color */
-  text-decoration: none; /* Remove underline */
-  font-weight: bold; /* Make link text bold */
-  display: block; /* Display as block for better clickability */
-  margin-bottom: 10px; /* Optional: Add spacing between links */
-}
-
-.item-container a:hover {
-  text-decoration: underline; /* Underline link on hover */
-}
-
-.item-details {
-  text-align: left; /* Left align details */
-  margin-top: 10px; /* Top margin for details */
-}
-
-.item-details p {
-  margin: 5px 0; /* Margin for each detail paragraph */
-}
-
-.item-details p a {
-  color: #3498db; /* Link color */
-  text-decoration: none; /* Remove underline */
-}
-
-.item-details p a:hover {
-  text-decoration: underline; /* Underline link on hover */
-}
